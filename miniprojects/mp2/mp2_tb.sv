@@ -1,4 +1,4 @@
-`timescale 10ns/10ns
+`timescale 1ns/1ns
 `include "mp2.sv"
 
 module mp2_tb;
@@ -16,14 +16,13 @@ module mp2_tb;
 
     initial begin
         $dumpfile("mp2_tb.vcd");
-        $dumpvars(0, mp2_tb);
-        #100000000; // going slightly past 1 second to show cycle repeating
+        $dumpvars(1, mp2);
+        #1000000000; // run for 1 second
         $finish;
     end
-
+    
     always begin
-        #4
-        clk = ~clk;
+        #41.6667 clk = ~clk; // ~12 MHz half-period
     end
 
 endmodule
